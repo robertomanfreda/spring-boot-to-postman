@@ -13,5 +13,6 @@
 
 - Fixed typos on Environment property name
 - Modified configuration structure
+- Added Hints section in README.md
 
 ---
