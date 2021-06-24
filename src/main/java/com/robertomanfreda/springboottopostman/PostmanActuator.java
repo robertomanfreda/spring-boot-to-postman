@@ -24,22 +24,20 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Component
-@ConditionalOnProperty(value = "from-spring-boot-to-postman.enabled", havingValue = "true")
+@ConditionalOnProperty(value = "spring-boot-to-postman.enabled", havingValue = "true")
 @Endpoint(id = "postman-dump")
 @Slf4j
 public class PostmanActuator {
 
     private final HttpServletRequest httpServletRequest;
     private final String parentPackage;
-    private final String parentArtifactID;
     private final RestTemplate restTemplate = new RestTemplate();
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     public PostmanActuator(@Autowired HttpServletRequest httpServletRequest, @Autowired Environment environment) {
         this.httpServletRequest = httpServletRequest;
 
-        parentPackage = environment.getProperty("from-spring-boot-to-postman.parent.package");
-        parentArtifactID = environment.getProperty("from-spring-boot-to-postman.parent.artifact-id");
+        parentPackage = environment.getProperty("spring-boot-to-postman.parent.package");
 
         customizeObjectMapper();
     }
@@ -65,7 +63,7 @@ public class PostmanActuator {
                 .filter(ds -> null != ds.getDetails())
                 .filter(ds -> null != ds.getDetails().getHandlerMethod())
                 .filter(ds -> null != ds.getDetails().getHandlerMethod().getClassName())
-                .filter(ds -> ds.getDetails().getHandlerMethod().getClassName().contains(parentPackage + "." + parentArtifactID))
+                .filter(ds -> ds.getDetails().getHandlerMethod().getClassName().contains(parentPackage))
                 .collect(Collectors.toList());
 
         Map<String, Set<Method>> endpointMethods = new HashMap<>();
@@ -130,7 +128,7 @@ public class PostmanActuator {
         PostmanCollection postmanCollection = PostmanCollection.builder()
                 .info(Info.builder()
                         ._postman_id(UUID.randomUUID().toString())
-                        .name(parentPackage + "." + parentArtifactID + "-" + System.currentTimeMillis())
+                        .name(parentPackage + "-" + System.currentTimeMillis())
                         .schema("https://schema.getpostman.com/json/collection/v2.1.0/collection.json")
                         .build())
                 .item(items)

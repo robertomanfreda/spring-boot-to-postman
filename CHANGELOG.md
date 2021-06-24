@@ -9,3 +9,9 @@
 
 ---
 
+# Version 0.0.2-SNAPSHOT
+
+- Fixed typos on Environment property name
+- Modified configuration structure
+
+---

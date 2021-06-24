@@ -59,14 +59,14 @@ You need to do some configurations:
 spring-boot-to-postman:
   enabled: true
   parent:
-    package: 'com.example'              # Specify the package name of your project
-    artifact-id: 'example-application'  # specify the artifact-id of your project
+    package: 'com.example.exampleapplication' # Specify the package of your project
 
 management:
   endpoints:
     web:
       exposure:
         include:
+          - 'mappings'
           - 'postman-dump'
 
 ```

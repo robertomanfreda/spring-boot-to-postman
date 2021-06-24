@@ -12,7 +12,7 @@
 
     <groupId>com.robertomanfreda</groupId>
     <artifactId>spring-boot-to-postman</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <name>spring-boot-to-postman</name>
     <description>Expose an extra actuator capable to generate the Postman collection of your application.</description>
 
