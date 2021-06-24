@@ -93,7 +93,7 @@ public class TestController {
 
 # HINTS
 
-- Do not use aliases of `@RequestMapping` such as `@GetMapping`, `@PostMapping` etc. or the endpoints will be not
-  scanned
+- Do not use aliases of `@RequestMapping` such as `@GetMapping`, `@PostMapping` etc.  
+  or the endpoints will be not scanned
 - Enable the extra actuator `postman-dump` ONLY in your local/dev/test environment, do not use it in production
   environment
